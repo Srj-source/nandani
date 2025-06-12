@@ -61,7 +61,7 @@
     #wedding-video {
       width: 100vw;
       height: 100vh;
-      object-fit: contain; /* or use contain if you don't want any part cut */
+      object-fit: contain;
     }
 
     #welcome-overlay {
@@ -91,7 +91,7 @@
 
   <div id="video-container">
     <div id="welcome-overlay"></div>
-    <video id="wedding-video" autoplay muted playsinline>
+    <video id="wedding-video" preload="none" muted playsinline>
       <source src="A1Video.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
@@ -115,6 +115,10 @@
           nameForm.style.display = 'none';
           videoContainer.style.display = 'block';
 
+          // Set the video source and start playing
+          weddingVideo.setAttribute('src', 'A1Video.mp4');
+          weddingVideo.load();
+          
           const playPromise = weddingVideo.play();
           if (playPromise !== undefined) {
             playPromise
